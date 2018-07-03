@@ -1,0 +1,9 @@
+{
+  "protocol": "https",
+  "hostName": "api.vk.com",
+  "basePath": "method",
+  "headers": {
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  "v": "5.80"
+}
