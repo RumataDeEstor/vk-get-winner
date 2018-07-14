@@ -12,15 +12,15 @@ class Users {
   }
 
   formatAndDisplay(result) {
-    console.log('\n\n');
+    console.log('\n');
 
     result.forEach((data) => {
-      console.log("\u001b[33m " + " " + data.user + "\u001b[34m" + " " + data.id + "\u001b[33m" + " РЕПОСТОВ: " + data.count)
+      console.log("\u001b[33m " + " " + data.user + "\u001b[36m" + " " + data.id + "\u001b[33m" + " РЕПОСТОВ: " + data.count)
     });
   }
 
   getBaseListOfIDsLikedAndReposted(postId, ownerId) {
-    console.log("\u001B[33m Подтасовываем результаты...")
+    console.log("\x1b[36m%s\x1b[0m", "Бежим в магазин за power-банками...")
 
     return request.getBaseListOfIDsLikedAndReposted(postId, ownerId)
       .then((payload) => {
@@ -32,7 +32,8 @@ class Users {
       .then(() => request.getListIdsOfMembersOnly())
       .then(() => request.getRepostsCountForMembersOnlyWithNames(this.baseListOfIDsLikedAndReposted))
       .then(() => request.getSortedList())
-      .then((result) => this.formatAndDisplay(result));
+      .then((result) => this.formatAndDisplay(result))
+      .catch(err => console.log('\u001b[0m Oops, something went wrong.'));
   }
 }
 

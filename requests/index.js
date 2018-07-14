@@ -14,10 +14,11 @@ class Provider {
 
   seqRunner(promises, numberToRely) {
     const texts = {
-      "2": () => console.log("\u001b[34m Удаляем Сашу Брюзгина из списка победителей..."),
-      "5": () => console.log("\u001b[33m Заказываем power-банки..."),
-      "10": () => console.log("\u001b[34m Ищем человека с Mi Band 2..."),
-      "15": () => console.log("\u001b[32m Ломаем VK api..."),
+      "2": () => console.log("\u001b[33m Ломаем VK api... "),
+      "5": () => console.log("\x1b[36m%s\x1b[0m", "Удаляем Сашу Брюзгина из списка победителей..."),
+      "8": () => console.log("\u001b[33m Ищем человека с Mi Band 2..."),
+      "15": () => console.log("\x1b[36m%s\x1b[0m", "Подтасовываем результаты..."),
+      "22": () => console.log("\u001b[33m", "Увеличиваем время респонса для нагнетания интриги..."),
     };
 
     return promises
@@ -41,7 +42,7 @@ class Provider {
   getArrayOfPromises(apiMethod, baseParams, numberToRely) {
     // console.log(numberToRely);
     const self = this;
-    for (let offset = 0; offset < 500; offset += 5) {
+    for (let offset = 0; offset < 500; offset += 10) {
       let funcWithPromise = function funcWithPromise() {
         return new Promise((resolve) => {
           return setTimeout(() => {
@@ -56,7 +57,7 @@ class Provider {
 
                 resolve();
               })
-          }, 300);
+          }, 200);
         })
       }
 
