@@ -18,4 +18,5 @@ function isInGroup(userId, groupId) {
 module.exports = {
   hasCommentForPost,
   hasLikeForPost,
+  isInGroup,
 };

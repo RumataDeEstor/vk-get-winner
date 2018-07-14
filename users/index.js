@@ -11,14 +11,28 @@ class Users {
     this.listOfUsersWithRepostsCount = [];
   }
 
+  formatAndDisplay(result) {
+    console.log('\n\n');
+
+    result.forEach((data) => {
+      console.log("\u001b[33m " + " " + data.user + "\u001b[34m" + " " + data.id + "\u001b[33m" + " РЕПОСТОВ: " + data.count)
+    });
+  }
+
   getBaseListOfIDsLikedAndReposted(postId, ownerId) {
+    console.log("\u001B[33m Подтасовываем результаты...")
+
     return request.getBaseListOfIDsLikedAndReposted(postId, ownerId)
       .then((payload) => {
         this.baseListOfIDsLikedAndReposted = payload.listIDs;
         this.likedAndRepostedCount = payload.count;
       })
       .then(() => request.getRepostsDataWithCount(POST_ID, OWNER_ID, this.likedAndRepostedCount))
-      .then(() => request.getInfoIsGroupMembers('', OWNER_ID))
+      .then(() => request.getInfoIsGroupMembers(OWNER_ID))
+      .then(() => request.getListIdsOfMembersOnly())
+      .then(() => request.getRepostsCountForMembersOnlyWithNames(this.baseListOfIDsLikedAndReposted))
+      .then(() => request.getSortedList())
+      .then((result) => this.formatAndDisplay(result));
   }
 }
 
